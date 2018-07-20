@@ -403,6 +403,7 @@ NOTE: Hiding sensitive configuration data! Please double and triple
         public ListCommandConfiguration()
         {
             PageSize = 25;
+            OrderBy = PackageOrder.name;
         }
 
         // list
@@ -415,7 +416,7 @@ NOTE: Hiding sensitive configuration data! Please double and triple
         public bool ByIdOnly { get; set; }
         public bool ByTagOnly { get; set; }
         public bool IdStartsWith { get; set; }
-        public bool OrderByPopularity { get; set; }
+        public PackageOrder OrderBy { get; set; }
         public bool ApprovedOnly { get; set; }
         public bool DownloadCacheAvailable { get; set; }
         public bool NotBroken { get; set; }
