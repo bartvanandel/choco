@@ -138,6 +138,11 @@ namespace chocolatey.infrastructure.app.nuget
                         .AsQueryable();
             }
 
+            Console.WriteLine("*** Before order: {0}", results.Count());
+            foreach (var result in results)
+            {
+                Console.WriteLine("    {0} ::: {1}", result.Id, result.Title);
+            }
 
             switch (configuration.ListCommand.OrderBy)
             {
@@ -156,7 +161,20 @@ namespace chocolatey.infrastructure.app.nuget
                 case PackageOrder.lastpublished:
                     results = results.OrderByDescending(p => p.Published).ThenBy(p => p.Id);
                     break;
+
+                case PackageOrder.unsorted:
+                default:
+                    Console.WriteLine("(not sorting)");
+                    break;
             }
+
+            Console.WriteLine("*** After order by {0}: {1}", configuration.ListCommand.OrderBy, results.Count());
+            foreach (var result in results)
+            {
+                Console.WriteLine("    {0} ::: {1}", result.Id, result.Title);
+            }
+
+            Console.WriteLine("done");
 
             return results;
         } 
