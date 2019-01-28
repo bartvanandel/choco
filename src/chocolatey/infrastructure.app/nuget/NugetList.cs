@@ -156,6 +156,12 @@ namespace chocolatey.infrastructure.app.nuget
                 case PackageOrder.lastpublished:
                     results = results.OrderByDescending(p => p.Published).ThenBy(p => p.Id);
                     break;
+
+                case PackageOrder.unsorted:
+                    break;
+
+                default:
+                    break;
             }
 
             return results;
